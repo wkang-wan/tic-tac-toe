@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+sqlalchemy
+pydantic
+httpx
+asyncio
+psycopg2-binary
+
+# Testing Dependencies
+pytest
+pytest-cov
+httpx
+
+gunicorn

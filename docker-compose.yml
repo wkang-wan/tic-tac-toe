@@ -1,0 +1,27 @@
+services:
+  # The PostgreSQL Database Service
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=tictactoe
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
+  # The FastAPI Application Service
+  api:
+    build: .
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_HOST=db
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
