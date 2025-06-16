@@ -21,8 +21,6 @@ This project is fully containerized. You do not need to have Python or PostgreSQ
     ```bash
     docker-compose up --build -d
     ```
-    * `--build`: Forces Docker Compose to build the API image from the `Dockerfile` if it doesn't exist or has changed.
-    * `-d`: Runs the containers in detached mode.
 
 3.  **Check the Status:**
     You can verify that both services are running with:
@@ -48,3 +46,4 @@ To run the entire test suite in a clean, containerized environment, execute the 
 
 ```bash
 docker-compose run --rm api pytest
+```
