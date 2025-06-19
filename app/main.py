@@ -56,6 +56,11 @@ def read_players(skip: int = 0, limit: int = 100, service: Service = Depends(get
 def create_game(game: service_schemas.GameCreate, service: Service = Depends(get_service)):
     return service.create_game(player_id=game.player1_id)
 
+@app.get("/games/", response_model=List[service_schemas.Game])
+def read_games(skip: int = 0, limit: int = 100, service: Service = Depends(get_service)):
+    games = service.get_games(skip=skip, limit=limit)
+    return games
+
 @app.post("/games/{game_id}/join", response_model=service_schemas.Game)
 def join_game(game_id: int, player_id: int, service: Service = Depends(get_service)):
     return service.join_game(game_id=game_id, player2_id=player_id)

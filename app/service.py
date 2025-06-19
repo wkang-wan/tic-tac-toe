@@ -39,6 +39,9 @@ class Service:
         self.db.refresh(db_game)
         return db_game
 
+    def get_games(self, skip: int = 0, limit: int = 100):
+        return self.db.query(database_models.Game).order_by(database_models.Game.id).offset(skip).limit(limit).all()
+
     def join_game(self, game_id: int, player2_id: int):
         db_game = self.db.query(database_models.Game).filter(database_models.Game.id == game_id).first()
         if not db_game:
